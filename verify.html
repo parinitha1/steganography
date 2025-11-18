@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+    <style>
+        body {
+            background-color: #0e0e0e;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 15px;
+            background-color: #222;
+            color: white;
+        }
+        button {
+            background-color: #0ef;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #00b8d4;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        <h2>Enter OTP</h2>
+        <input type="text" name="otp" placeholder="Enter 6-digit OTP" required><br>
+        <button type="submit">Verify</button>
+    </form>
+</body>
+</html>
