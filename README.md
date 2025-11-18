@@ -1,171 +1,104 @@
-Image Steganography Using LSB (FlASK Web App with OTP Verification)
+🖼️ Image Steganography Using LSB (Flask Web App)
 
-This project hides secret text inside images using the Least Significant Bit (LSB) steganography method.
-To prevent unauthorized access to hidden messages, the system uses OTP verification, where the OTP is generated at runtime and printed in the terminal, not stored in any database.
+A simple and secure web application that hides and extracts secret messages inside images using the Least Significant Bit (LSB) technique.
+The app includes user authentication and OTP verification, where the OTP is generated at runtime and shown in the terminal to ensure that only the authenticated user can decode the hidden message.
+
+⭐ Features
+
+🔐 Signup & Login authentication (SQLite)
+
+🖼️ Hide text inside images using LSB
+
+🔍 Decode hidden messages
+
+🔑 OTP verification (printed in terminal, not stored in DB)
+
+🗂️ Uploaded & encoded images saved automatically
+
+🌐 Clean Flask-based web interface
 
 📁 Project Structure
-project/
-│── app.py               # Main Flask application (run this)
-│── view_db.py           # View user database (optional)
-│── users.db             # SQLite database storing user accounts
-│── requirements.txt     # Required libraries
+.
+│── app.py                # Main Flask application
+│── view_db.py            # View users stored in SQLite DB
+│── users.db              # Database storing user accounts
+│── requirements.txt      # Dependencies
 │
-│── templates/
-│     ├── index.html     # Home page
-│     ├── encode.html    # Message hiding page
-│     ├── decode.html    # Message decoding request page
-│     ├── login.html     # Login page
-│     ├── signup.html    # Registration page
-│     └── verify.html    # OTP input page
+│── templates/            # Frontend HTML pages
+│   ├── index.html
+│   ├── encode.html
+│   ├── decode.html
+│   ├── verify.html
+│   ├── login.html
+│   └── signup.html
 │
-│── static/
-│     └── style.css      # UI styling
+│── static/               # CSS styling
+│   └── style.css
 │
-└── uploads/             # Stores uploaded & encoded images
+└── uploads/              # Uploaded & encoded images
 
-📜 File-by-File Explanation
-✔ 1. app.py
-
-The main backend application.
-
-Handles:
-
-Running the Flask server
-
-Login + Signup
-
-Image uploading
-
-LSB encoding (hiding message)
-
-LSB decoding (extracting message)
-
-OTP generation (random 6-digit code)
-
-Printing OTP in terminal (NOT stored in DB)
-
-Verifying user-entered OTP
-
-Routing all HTML pages
-
-➡ This is the file you run.
-
-✔ 2. users.db
-
-SQLite database
-
-Stores user credentials ONLY
-
-Does not store OTP
-
-OTP is temporary and stored only in memory during verification
-
-✔ 3. view_db.py
-
-A helper script used to view user table entries.
-
-Run manually if needed:
-
-python view_db.py
-
-✔ 4. HTML Templates
-index.html
-
-Home page
-
-Navigation to encode/decode/login
-
-encode.html
-
-Upload image
-
-Enter secret message
-
-Encoded image saved into /uploads
-
-decode.html
-
-Upload encoded image
-
-System generates OTP
-
-OTP is printed in terminal only
-
-User is redirected to enter OTP
-
-verify.html
-
-User enters OTP
-
-If OTP matches → hidden message is shown
-
-If incorrect → decoding blocked
-
-login.html + signup.html
-
-Handles user authentication.
-
-✔ 5. style.css
-
-Styles the HTML pages.
-
-✔ 6. uploads/
-
-Stores uploaded original images and the encoded output images.
-
-🔐 OTP Verification Flow (Terminal-Based)
-
-User logs in
-
-Navigates to Decode page
-
-Uploads the encoded image
-
-Backend generates a 6-digit OTP
-
-OTP is printed in the terminal console
-
-Backend temporarily remembers the OTP (not stored anywhere)
-
-User enters OTP in the verify.html page
-
-If correct → hidden message is extracted
-
-If incorrect → decoding denied
-
-📌 This ensures only the real logged-in user sitting at the machine sees the OTP.
-
-🛠️ Setup Instructions
-1. Create virtual environment
+▶️ How to Run the Project
+1. Create & activate a virtual environment
 python -m venv venv
-venv\Scripts\activate     # Windows
-source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Mac/Linux
 
 2. Install dependencies
 pip install -r requirements.txt
 
-3. Run the app
+3. Start the server
 python app.py
 
 
-Open:
+Open the browser and go to:
 
 http://127.0.0.1:5000/
 
-🖥️ Technologies Used
+🔐 OTP Verification
+
+When a user attempts to decode an image:
+
+User uploads the encoded image
+
+System generates a 6-digit OTP
+
+OTP is printed in the terminal only
+
+User enters that OTP in verify.html
+
+If OTP matches → message is revealed
+
+If not → access is denied
+
+✔ OTP is not stored in the database
+✔ OTP lives only in memory until verification
+
+🧠 How LSB Steganography Works
+
+The system modifies the least significant bit of each image pixel to store message bits.
+This makes the change visually undetectable.
+
+Example:
+
+Original pixel (binary):  11001100
+Message bit:                    1
+Modified pixel:          11001101
+
+
+The human eye cannot notice this tiny change.
+
+🛠️ Technologies Used
 
 Python
 
 Flask
 
-PIL/Pillow
-
 SQLite
 
-HTML/CSS
+PIL / Pillow
+
+HTML, CSS
 
 LSB Steganography
 
-OTP Security (Console-based)
-
-GitHub for version control
+OTP Verification
